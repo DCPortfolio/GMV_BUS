@@ -79,7 +79,7 @@
     { "time": "20:30", "everyday": true },
     { "time": "21:00", "everyday": true },
     { "time": "21:30", "everyday": true },
-    { "time": "22:00у", "everyday": true },
-    { "time": "22:35у", "everyday": true }
+    { "time": "22:00", "everyday": true },
+    { "time": "22:35", "everyday": true }
   ]
 }

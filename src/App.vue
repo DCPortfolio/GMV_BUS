@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <header>
-      <label>
+      <label :class="{ glow: direction === 'perm' }">
         <input type="radio" name="dir" value="perm" v-model="direction" />
         Perm'
       </label>
-      <label>
+      <label :class="{ glow: direction === 'gamovo' }">
         <input type="radio" name="dir" value="gamovo" v-model="direction" />
         Gamovo
       </label>
-      <label><input type="checkbox" v-model="weekend" />Holiday</label>
+      <label :class="{ glow: weekend }">
+        <input type="checkbox" v-model="weekend" /> Holiday
+      </label>
     </header>
     <main>
       <div
@@ -17,7 +19,8 @@
         :key="time.time"
         :class="{
           'non-available': !time.everyday && weekend,
-          next: time.time === next.time
+          next: time.time === next.time,
+          short: time.time >= '22:00'
         }"
       >
         <span> {{ time.time }} </span>
@@ -74,33 +77,71 @@ export default {
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
+  font-family: "digital", monospace;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+body {
+  background: #222831;
 }
 header {
   display: flex;
   flex-wrap: wrap;
+  height: 10vh;
+  font-size: 2.5rem;
+  margin: 1rem 0;
   label {
     display: flex;
     flex-basis: 50%;
     justify-content: center;
+    color: #393e46;
+    transition: 0.4s;
+    &.glow {
+      color: #fd7014;
+    }
     &:last-child {
       flex-basis: 100%;
+    }
+    input {
+      display: none;
     }
   }
 }
 main {
   display: flex;
   flex-wrap: wrap;
+  font-size: 2.5rem;
   div {
     flex-basis: 33.3%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fd7014;
+    transition: 0.4s;
     &.non-available {
-      color: rgb(194, 194, 194);
+      color: #393e46;
     }
     &.next {
-      color: red;
+      span {
+        animation: 1s slide infinite alternate;
+      }
     }
+    &.short {
+      color: rgba($color: #fd7014, $alpha: 0.4);
+    }
+  }
+}
+
+@keyframes slide {
+  0% {
+    filter: brightness(50%);
+  }
+  60% {
+    filter: brightness(150%);
+    text-shadow: 0 0 10px #fd7014;
+  }
+  100% {
+    filter: brightness(100%);
   }
 }
 </style>

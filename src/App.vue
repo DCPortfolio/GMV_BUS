@@ -71,33 +71,38 @@ export default {
 </script>
 
 <style lang="scss">
+$font: "digital", monospace;
+$color_back_primary: #141414; // Black dark
+$color_back_sec: #1e1e1e; // Black bright
+$color_primary: #f5511e; // Orange bright
+$color_sec: #d74315; // Orange darker
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
-  font-family: "digital", monospace;
+  font-family: $font;
   font-weight: 100;
   text-transform: uppercase;
 }
 body {
-  background: #222831;
+  background: $color_back_primary;
 }
 header {
   display: flex;
   flex-wrap: wrap;
-  height: 10vh;
+  min-height: 10vh;
   font-size: 2.5rem;
   margin: 1rem 0;
   label {
     display: flex;
-    flex-basis: 50%;
+    flex-basis: calc(100% / 2);
     justify-content: center;
-    color: #393e46;
+    color: $color_back_sec;
     transition: 0.4s;
     &.glow {
-      color: #fd7014;
+      color: $color_primary;
     }
     &:last-child {
       flex-basis: 100%;
@@ -112,14 +117,14 @@ main {
   flex-wrap: wrap;
   font-size: 2.5rem;
   div {
-    flex-basis: 33.3%;
+    flex-basis: calc(100% / 3);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fd7014;
+    color: $color_primary;
     transition: 0.4s;
     &.non-available {
-      color: #393e46;
+      color: $color_back_sec;
     }
     &.next {
       span {
@@ -127,7 +132,7 @@ main {
       }
     }
     &.short {
-      color: rgba($color: #fd7014, $alpha: 0.4);
+      color: rgba($color: $color_primary, $alpha: 0.4);
     }
   }
 }
@@ -138,10 +143,11 @@ main {
   }
   60% {
     filter: brightness(150%);
-    text-shadow: 0 0 10px #fd7014;
+    text-shadow: 0 0 10px $color_primary;
   }
   100% {
     filter: brightness(100%);
   }
 }
+@import "./assets/css/adaptive.scss";
 </style>

@@ -82,6 +82,7 @@ $color_sec: #d74315; // Orange darker
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba($color: #000000, $alpha: 0);
   font-family: $font;
   font-weight: 100;
   text-transform: uppercase;
@@ -97,8 +98,10 @@ header {
   margin: 1rem 0;
   label {
     display: flex;
+    min-height: 2.5rem;
     flex-basis: calc(100% / 2);
     justify-content: center;
+    align-items: center;
     color: $color_back_sec;
     transition: 0.4s;
     &.glow {
@@ -118,6 +121,7 @@ main {
   font-size: 2.5rem;
   div {
     flex-basis: calc(100% / 3);
+    min-height: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
